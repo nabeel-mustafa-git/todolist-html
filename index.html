@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive To-Do List</title>
+    <style>
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter a new task" />
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+      const tasklist = document.getElementById("taskList");
+      const taskInput = document.getElementById("taskInput");
+      const addTaskBtn = document.getElementById("addTaskBtn");
+
+      // 1. Regular function to add a task to the list
+      function addTask() {
+        const name = taskInput.value;
+        console.log(name + "ok");
+        tasklist.innerHTML += `<li>${name} <button onclick="completeItem(this)">Complete</button> <button onclick="deleteItem(this)">Delete</button></li>`;
+        taskInput.value = "";
+      }
+
+      // 2. Arrow function to toggle task completion
+      const completeItem = (li) => {
+        li.parentElement.classList.add("completed");
+      };
+      // 3. Anonymous function to delete a task
+      const deleteItem = function (li) {
+        li.parentElement.remove();
+      };
+
+      // 4. Event listener for the "Add Task" button
+      addTaskBtn.addEventListener("click", addTask);
+    </script>
+  </body>
+</html>
