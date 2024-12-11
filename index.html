@@ -24,19 +24,23 @@
       // 1. Regular function to add a task to the list
       function addTask() {
         const name = taskInput.value;
-        console.log(name + "ok");
-        tasklist.innerHTML += `<li>${name} <button onclick="completeItem(this)">Complete</button> <button onclick="deleteItem(this)">Delete</button></li>`;
+        tasklist.innerHTML += `<li class="taskItem">${name}<button class="deleteBtn">Delete</button></li>`;
         taskInput.value = "";
       }
 
       // 2. Arrow function to toggle task completion
-      const completeItem = (li) => {
-        li.parentElement.classList.add("completed");
-      };
+      taskList.addEventListener("click", (event) => {
+        if (event.target.classList.contains("taskItem")) {
+          event.target.classList.toggle("completed");
+        }
+      });
+
       // 3. Anonymous function to delete a task
-      const deleteItem = function (li) {
-        li.parentElement.remove();
-      };
+      taskList.addEventListener("click", function (event) {
+        if (event.target.classList.contains("deleteBtn")) {
+          event.target.parentElement.remove();
+        }
+      });
 
       // 4. Event listener for the "Add Task" button
       addTaskBtn.addEventListener("click", addTask);
